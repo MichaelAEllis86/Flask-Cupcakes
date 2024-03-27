@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} Cupcakes Visualized {% endblock %}
+{% block content %}
+
+<h4>Look at these foodie pics!</h4>
+
+<div id="cupcakeformcontainer" class="container">
+    <div id="cupcakediv" class="row justify-content-start "></div>
+    <h3>Enter a new cupcake below!</h3>
+    <div id="cupcakeformrow" class="row justify-content-left">
+        <div id="cupcakeformcol" class="col-md-5">
+            <form id="cupcake-add-form" action="#" method="POST">
+
+            {{form.hidden_tag()}}
+
+            {% for field in form
+            if field.widget.input_type != 'hidden'%}
+
+                <div class="form-group">  
+            {{field.label(class_="text-info font-weight-bold")}}
+            {{field(class_="form-control")}}
+
+            {% for error in field.errors %}
+                    <small class="form-text text-danger">{{error}}</small>
+            
+            {% endfor %}
+                </div>
+            {% endfor %}
+        
+                <button id="cupcakesubmitbtn" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    </div>
+    
+
+
+
+
+
+    </div>
+</div>
+
+<ul id="messagecontainer"></ul>
+
+<button id="getcupcakesbtn" class="btn btn-primary">Click to re-render cupcakes via Axios</button>
+
+<p>Thanks for browsing!</p>
+    
+{%endblock%}
